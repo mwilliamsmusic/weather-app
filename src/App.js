@@ -1,36 +1,82 @@
 import React, {useEffect, useState} from "react";
 import "./App.css";
 import ScreenView from "./components/views/screen-view/ScreenView";
-import WeatherDashboard from "./components/views/weather-dashboard/WeatherDashboard";
-import {locationObj, weatherObj} from "./utils/jsonData";
-import {convertURL, locationURL} from "utils/url";
-import Main from "components/Main";
+import {locationObj, QUALITY, weatherObj} from "./utils/jsonData";
+import {convertQualityURL, convertURL, locationURL} from "utils/url";
+import WeatherDashboardView from "components/views/weather-dashboard/WeatherDashboardView";
 
 function App() {
     const [city, setCity] = useState("");
-    const [location, setLocation] = useState({});
+    const [location, setLocation] = useState(null);
     const [weather, setWeather] = useState(null);
-    let meh = "meh";
+    const [quality, setQuality] = useState(null);
+
     function getLocation() {
         const we = weatherObj;
         const lo = locationObj;
+        const q = QUALITY;
         setWeather(we);
         setLocation(lo);
+        setQuality(q);
     }
-
-    /* 
-    function getLocation() {
+    function getQuality(cord) {
+        if (cord) {
+            fetch(convertQualityURL(cord))
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setQuality(data);
+                })
+                .catch((error) => {
+                    console.error(
+                        "There was a problem with the fetch operation:",
+                        error,
+                    );
+                });
+        }
+    }
+    /*     function getLocation() {
         if (city) {
             fetch(locationURL(city))
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok");
                     }
-                    return response.json(); // Parse the JSON response
+                    return response.json();
                 })
                 .then((data) => {
-                    setLocation(data.results);
-                    getWeather();
+                    setLocation(data[0]);
+                    getWeather(data[0]);
+                    //   getQuality(data[0]);
+                })
+                   .then(() => {
+                    const cords = location;
+                    getWeather(cords);
+                    //   getQuality(data[0]);
+                }) 
+                .catch((error) => {
+                    console.error(
+                        "There was a problem with the fetch operation:",
+                        error,
+                    );
+                });
+        }
+    } */
+    function getWeather(cord) {
+        if (cord) {
+            fetch(convertURL(cord))
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((data) => {
+                    setWeather(data);
                 })
 
                 .catch((error) => {
@@ -41,39 +87,28 @@ function App() {
                 });
         }
     }
-    function getWeather() {
-        if (location) {
-            fetch(convertURL(city))
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Network response was not ok");
-                    }
-                    return response.json(); // Parse the JSON response
-                })
-                .then((data) => {
-                    console.log(data);
-                    setWeather(data);
-                })
-                .catch((error) => {
-                    console.error(
-                        "There was a problem with the fetch operation:",
-                        error,
-                    );
-                });
-        }
-        <div className="visable xl:hidden ">
-            <WeatherDashboard />
-        </div>;
-
-        const we = weatherObj;
-        const lo = locationObj;
-        setWeather(we);
-        setLocation(lo);
-    } */
 
     return (
         <div>
-            <Main />
+            <div>
+                <div className=" xl:hidden ">
+                    <WeatherDashboardView
+                        weather={weather}
+                        location={location}
+                        quality={quality}
+                    />
+                </div>
+                <div className=" hidden xl:block ">
+                    <ScreenView
+                        weather={weather}
+                        location={location}
+                        city={city}
+                        setCity={setCity}
+                        getLocation={getLocation}
+                    />
+                </div>
+                ;
+            </div>
         </div>
     );
 }

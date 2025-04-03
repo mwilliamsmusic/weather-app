@@ -4,7 +4,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLeftLong, faRightLong} from "@fortawesome/free-solid-svg-icons";
 
 import ScreenWeather from "./ScreenWeather";
+import {formatTime} from "utils/date";
 export default function ScreenView(props) {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
     return (
         <div className="bg-[rgb(53,124,255)] bg-opacity-5 min-h-screen">
             <div className="columns-1 mb-[50px]  ">
@@ -48,9 +51,8 @@ export default function ScreenView(props) {
                         </div>
 
                         <div className=" self-end text-[20px] font-[400] text-[#000000] font-[Open Sans]  ">
-                            {/*`Data as of formatTime(props.weather.current.time)*/}
-                            <div className="flex justify-center items-center h-[48px] w-[288px] border border-[#A3A3A3] rounded-md shadow-[0_1px_20px_#2D2D2D40] ">
-                                Data as of formatTime
+                            <div className="flex justify-center items-center h-[48px] w-[288px] border border-[#A3A3A3] rounded-md shadow-[0_1px_20px_#2D2D2D40] bg-[rgb(255,255,255)]">
+                                {`Data as of ${timeString}`}
                             </div>
                         </div>
                     </div>
@@ -62,7 +64,12 @@ export default function ScreenView(props) {
                         location={props.location}
                     />
                 ) : (
-                    "Enter City"
+                    <div className="flex justify-center items-center ">
+                        <div className="text-[20px] text-[#D9D9D9]  font-[600] border border-[#A3A3A3] rounded-md shadow-[0_1px_20px_#2D2D2D40] w-[808px] p-[16px] bg-[rgba(255,255,255)] bg-opacity-90">
+                            {" "}
+                            {"No results"}
+                        </div>
+                    </div>
                 )}
             </div>
         </div>

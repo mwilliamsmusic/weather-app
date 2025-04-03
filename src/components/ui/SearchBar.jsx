@@ -8,7 +8,6 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export default function SearchBar(props) {
     const id = useId();
 
-    //const inputRef = useRef <HTMLInputElement> null;
     const inputRef = createRef();
 
     const handleClearInput = () => {
@@ -56,36 +55,3 @@ export default function SearchBar(props) {
         </div>
     );
 }
-/* 
-    return (
-        <div className="*:not-first:mt-2  ">
-            <label
-                htmlFor={id}
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-                Enter City
-            </label>
-            <div className="relative border border-gray-800 text-sm ">
-                <input
-                    id={id}
-                    ref={inputRef}
-                    className="pe-9 m-1"
-                    placeholder="City"
-                    type="text"
-                    value={props.city}
-                    onChange={(e) => props.setCity(e.target.value)}
-                />
-
-                {props.inputValue && (
-                    <button
-                        className="text-muted-foreground/80  hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md transition-[color,box-shadow] outline-none focus:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 "
-                        aria-label="Location"
-                        onClick={handleClearInput}
-                    >
-                        <CircleXIcon size={16} aria-hidden="true" />
-                    </button>
-                )}
-            </div>
-        </div>
-    );
-} */

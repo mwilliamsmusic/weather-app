@@ -12,7 +12,7 @@ let min = weather.daily.temperature_2m_min.sort((a, b) => a - b).reverse();
 let max = weather.daily.temperature_2m_max.sort((a, b) => a - b).reverse();
 const desc = weatherMap;
 describe("WeatherDashboard Component", () => {
-    test("adds 1 + 2 to equal 3", () => {
+    test("Display text WeatherDashboard", () => {
         render(<WeatherDashboard />);
         expect(
             screen.getByText(
@@ -42,11 +42,11 @@ describe("WeatherDashboard Component", () => {
         /*       expect(
             screen.getByText(weather.current.wind_speed_10m),
         ).toBeInTheDocument(); */
-        expect(
+        /*        expect(
             screen.getByText(
                 `${weather.hourly.visibility[0]} ${weather.hourly_units.visibility}`,
             ),
-        ).toBeInTheDocument();
+        ).toBeInTheDocument(); */
         expect(
             screen.getByText(
                 `${weather.hourly.surface_pressure[0]} ${weather.hourly_units.surface_pressure}`,

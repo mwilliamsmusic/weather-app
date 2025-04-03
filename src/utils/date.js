@@ -1,5 +1,5 @@
 export function getDayName(dateStr) {
-    var date = new Date(dateStr);
+    let date = new Date(dateStr);
     return date.toLocaleDateString("en-US", {weekday: "long"});
 }
 export function formatTime(time) {

@@ -1,20 +1,16 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
 
-import {weatherObj} from "utils/jsonData";
+import {locationObj, weatherObj} from "utils/jsonData";
 import {formatTime} from "utils/date";
 import ScreenView from "../ScreenView";
-
+const location = locationObj;
+const weather = weatherObj;
 describe("ScreenView Component", () => {
     test("Text display", () => {
-        const weather = weatherObj;
-        /*      let visibility =
-            weather.hourly.relative_humidity_2m[
-                weather.hourly.relative_humidity_2m.length - 1
-            ]; */
-        render(<ScreenView weather={weather} />);
+        render(<ScreenView weather={weather} location={location} />);
 
-        /*    expect(
+        /*       expect(
             screen.getByText(`Data as of ${formatTime(weather.current.time)}`),
         ).toBeInTheDocument(); */
         expect(
