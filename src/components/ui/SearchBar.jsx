@@ -1,9 +1,6 @@
 import React from "react";
-
 import {useId, createRef} from "react";
 import {faMagnifyingGlass, faXmark} from "@fortawesome/free-solid-svg-icons";
-
-import {CircleXIcon} from "lucide-react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 export default function SearchBar(props) {
     const id = useId();

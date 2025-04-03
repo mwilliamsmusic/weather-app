@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import "./App.css";
 import ScreenView from "./components/views/screen-view/ScreenView";
 import {locationObj, QUALITY, weatherObj} from "./utils/jsonData";
-import {convertQualityURL, convertURL, locationURL} from "utils/url";
 import WeatherDashboardView from "components/views/weather-dashboard/WeatherDashboardView";
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
         setLocation(lo);
         setQuality(q);
     }
-    function getQuality(cord) {
+    /*     function getQuality(cord) {
         if (cord) {
             fetch(convertQualityURL(cord))
                 .then((response) => {
@@ -38,7 +37,7 @@ function App() {
                     );
                 });
         }
-    }
+    } */
     /*     function getLocation() {
         if (city) {
             fetch(locationURL(city))
@@ -66,7 +65,7 @@ function App() {
                 });
         }
     } */
-    function getWeather(cord) {
+    /*     function getWeather(cord) {
         if (cord) {
             fetch(convertURL(cord))
                 .then((response) => {
@@ -86,7 +85,7 @@ function App() {
                     );
                 });
         }
-    }
+    } */
 
     return (
         <div>

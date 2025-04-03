@@ -1,19 +1,26 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
-import WeatherDashboard from "../WeatherDashboard";
-import {locationObj, weatherObj} from "utils/jsonData";
+import {locationObj, QUALITY, weatherObj} from "utils/jsonData";
 import {weatherMap} from "utils/weatherCodes";
 import {getDayName} from "utils/date";
+import WeatherDashboardView from "../WeatherDashboardView";
 
 const location = locationObj;
 const weather = weatherObj;
+const quality = QUALITY;
 let code = weather.daily.weather_code[weather.daily.weather_code.length - 1];
 let min = weather.daily.temperature_2m_min.sort((a, b) => a - b).reverse();
 let max = weather.daily.temperature_2m_max.sort((a, b) => a - b).reverse();
 const desc = weatherMap;
 describe("WeatherDashboard Component", () => {
     test("Display text WeatherDashboard", () => {
-        render(<WeatherDashboard />);
+        render(
+            <WeatherDashboardView
+                location={location}
+                weather={weather}
+                quality={quality}
+            />,
+        );
         expect(
             screen.getByText(
                 `${weather.current.temperature_2m}${weather.current_units.temperature_2m.replace("F", "")}`,

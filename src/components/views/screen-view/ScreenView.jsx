@@ -2,9 +2,7 @@ import React from "react";
 import SearchBar from "../../ui/SearchBar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLeftLong, faRightLong} from "@fortawesome/free-solid-svg-icons";
-
 import ScreenWeather from "./ScreenWeather";
-import {formatTime} from "utils/date";
 export default function ScreenView(props) {
     const now = new Date();
     const timeString = now.toLocaleTimeString();
@@ -67,7 +65,7 @@ export default function ScreenView(props) {
                     <div className="flex justify-center items-center ">
                         <div className="text-[20px] text-[#D9D9D9]  font-[600] border border-[#A3A3A3] rounded-md shadow-[0_1px_20px_#2D2D2D40] w-[808px] p-[16px] bg-[rgba(255,255,255)] bg-opacity-90">
                             {" "}
-                            {"No results"}
+                            {"Click search button"}
                         </div>
                     </div>
                 )}
